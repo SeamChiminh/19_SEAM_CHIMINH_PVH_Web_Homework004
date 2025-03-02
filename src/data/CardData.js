@@ -1,0 +1,42 @@
+export const CardData = [
+  {
+    id: 1,
+    projectName: "Web Design",
+    dueDate: "2025/01/13",
+    process: 50,
+    description: "This is a description",
+    colorBg: "bg-custom-yellow-500",
+    textColor: "text-custom-yellow-500",
+    deadline: "2 days left",
+  },
+  {
+    id: 2,
+    projectName: "Java programming",
+    dueDate: "2025/01/14",
+    process: 25,
+    description: "This is a description",
+    colorBg: "bg-custom-pink",
+    textColor: "text-custom-pink",
+    deadline: "2 days left",
+  },
+  {
+    id: 3,
+    projectName: "HTML & CSS",
+    dueDate: "2025/01/15",
+    process: 75,
+    description: "This is a description",
+    colorBg: "bg-custom-carrot",
+    textColor: "text-custom-carrot",
+    deadline: "2 days left",
+  },
+  {
+    id: 4,
+    projectName: "Spring Boot",
+    dueDate: "2025/01/16",
+    process: 100,
+    description: "This is a description",
+    colorBg: "bg-custom-sky-blue",
+    textColor: "text-custom-sky-blue",
+    deadline: "2 days left",
+  }
+];

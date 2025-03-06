@@ -1,8 +1,10 @@
 import { Car, EllipsisVertical } from "lucide-react";
 import React from "react";
 import { getDaysLeft } from "../lib/DeadLineDate";
+import { formatDate } from "../lib/fomartDate";
 
 export default function CardComponent({projects}) {
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ">
       {projects.map((item) => (
@@ -14,7 +16,7 @@ export default function CardComponent({projects}) {
           
           <div className="flex justify-between mb-5">
             <p className={`${item.progress == 25 ? "text-custom-pink" : item.progress == 50 ? "text-custom-yellow-500" : item.progress == 75 ? "text-custom-carrot" : "text-custom-sky-blue"}  text-xs font-medium`}>
-              {item.dueDate}
+              {formatDate(item.dueDate)}
             </p>
             <EllipsisVertical size={20} color="#374957" />
           </div>

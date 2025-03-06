@@ -3,24 +3,59 @@ import React, { useState } from "react";
 
 export default function AddNewProjectComponent({ onProjectSubmit }) {
   const [data, setData]= useState({});
-
-  const [dateValue, setDateValue] = useState(null);
-  const handleDate = (e) => {
-    setDateValue(e.target.value);
-    console.log("date value", e.target.value);
-  }
+  const [error, setError] = useState('');
 
   const onChangeHandler = (e) => {
     const inputData = {[e.target.name]: e.target.value};
     setData({...data, ...inputData});
-    console.log("onchange value", e.target.value);
-    console.log("data", data);
+
+    setError((prevError) => ({
+      ...prevError,
+      [e.target.name]: "",
+    }));
+  
+    // console.log("onchange value", e.target.value);
+    // console.log("data", data);
   }
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!data.projectName) {
+      newErrors.projectName = "Project Name is required.";
+    }
+    if (!data.dueDate) {
+      newErrors.dueDate = "Due Date is required.";
+    }
+    if (!data.progress) {
+      newErrors.progress = "Progress is required.";
+    }
+    if (!data.description) {
+      newErrors.description = "Description is required.";
+    }
+
+    setError(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onProjectSubmit(data); 
-    console.log("Form data submitted:", data);
+    if (validateForm()) {
+  
+      onProjectSubmit(data);
+      // console.log("Form data submitted:", data);
+
+      setData({
+        projectName: "",
+        dueDate: "",
+        progress: "",
+        description: "",
+      });
+
+    } else {
+      // console.log("Form validation failed.");
+    }
   };
     
   return (
@@ -86,6 +121,9 @@ export default function AddNewProjectComponent({ onProjectSubmit }) {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Type Project Name"
                   />
+                  {error.projectName && (
+                    <p className="text-sm text-red-500 mt-1">{error.projectName}</p>
+                  )}
                 </div>
 
                 <div className="col-span-2">
@@ -102,6 +140,9 @@ export default function AddNewProjectComponent({ onProjectSubmit }) {
                     id="dueDate"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
+                  {error.dueDate && (
+                    <p className="text-sm text-red-500 mt-1">{error.dueDate}</p>
+                  )}
                 </div>
 
                 <div className="col-span-2">
@@ -123,6 +164,9 @@ export default function AddNewProjectComponent({ onProjectSubmit }) {
                     <option value="50">50</option>
                     <option value="25">25</option>
                   </select>
+                  {error.progress && (
+                    <p className="text-sm text-red-500 mt-1">{error.progress}</p>
+                  )}
                 </div>
                 <div className="col-span-2">
                   <label
@@ -139,6 +183,9 @@ export default function AddNewProjectComponent({ onProjectSubmit }) {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Write product description here"
                   ></textarea>
+                  {error.description && (
+                    <p className="text-sm text-red-500 mt-1">{error.description}</p>
+                  )}
                 </div>
               </div>
               <div className="text-right">

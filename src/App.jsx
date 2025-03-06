@@ -13,7 +13,7 @@ function App() {
 
   const handleProjectSubmit = (newProject) => {
     setProjects([...projects, newProject]);
-    console.log("New Project Added:", newProject);
+    // console.log("New Project Added:", newProject);
     
   };
 

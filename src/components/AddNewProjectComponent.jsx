@@ -4,6 +4,12 @@ import React, { useState } from "react";
 export default function AddNewProjectComponent({ onProjectSubmit }) {
   const [data, setData]= useState({});
 
+  const [dateValue, setDateValue] = useState(null);
+  const handleDate = (e) => {
+    setDateValue(e.target.value);
+    console.log("date value", e.target.value);
+  }
+
   const onChangeHandler = (e) => {
     const inputData = {[e.target.name]: e.target.value};
     setData({...data, ...inputData});

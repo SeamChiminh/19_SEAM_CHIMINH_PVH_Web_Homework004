@@ -1,9 +1,10 @@
 import { Car, EllipsisVertical } from "lucide-react";
 import React from "react";
+import { getDaysLeft } from "../lib/DeadLineDate";
 
 export default function CardComponent({projects}) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ">
       {projects.map((item) => (
         
         <div
@@ -44,7 +45,7 @@ export default function CardComponent({projects}) {
           {/* Deadline */}
           <div className="flex justify-end">
             <p className="font-medium bg-light-gray py-1.5 px-4 rounded-lg max-w-28 text-center text-sm">
-              {item.deadline}
+              {getDaysLeft(item.dueDate)}
             </p>
           </div>
         </div>

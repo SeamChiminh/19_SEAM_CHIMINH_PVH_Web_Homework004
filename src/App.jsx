@@ -14,9 +14,10 @@ function App() {
   const handleProjectSubmit = (newProject) => {
     setProjects([...projects, newProject]);
     console.log("New Project Added:", newProject);
+    
   };
 
-  return (
+  return ( 
     <>
       <div className="w-full min-h-screen bg-[#f6f7f9] flex flex-col lg:flex-row">
         <div className="w-full lg:w-[20%] h-auto lg:h-screen">

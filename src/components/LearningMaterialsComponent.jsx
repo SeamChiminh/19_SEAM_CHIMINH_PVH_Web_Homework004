@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Star } from "lucide-react";
 import FilterComponent from "./FilterComponent";
 import { learningMaterials as initialData } from "../data/learningMaterials";
+import { formatDate } from "../lib/fomartDate";
 
 export default function LearningMaterialsComponent() {
 
@@ -68,7 +69,8 @@ export default function LearningMaterialsComponent() {
                 </button>
               </div>
               <p className="text-gray-400 text-sm">
-                Posted at: {item.postedAt}
+                {/* Posted at: {item.postedAt} */}
+                Posted at: {formatDate(item.postedAt)}
               </p>
             </div>
           </div>

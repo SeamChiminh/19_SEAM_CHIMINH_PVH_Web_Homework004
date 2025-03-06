@@ -1,17 +1,18 @@
 import { Car, EllipsisVertical } from "lucide-react";
 import React from "react";
-import { CardData } from "../data/CardData";
 
-export default function CardComponent() {
+export default function CardComponent({projects}) {
   return (
-    <div>
-      {CardData.map((item) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 ">
+      {projects.map((item) => (
+        
         <div
           key={item.id}
-          className="max-w-sm p-6 bg-white rounded-2xl shadow-sm dark:bg-gray-800 dark:border-gray-700 mb-5"
+          className=" p-6 bg-white rounded-2xl shadow-sm dark:bg-gray-800 dark:border-gray-700 mb-5"
         >
+          
           <div className="flex justify-between mb-5">
-            <p className={`${item.textColor} text-xs font-medium`}>
+            <p className={`${item.progress == 25 ? "text-custom-pink" : item.progress == 50 ? "text-custom-yellow-500" : item.progress == 75 ? "text-custom-carrot" : "text-custom-sky-blue"}  text-xs font-medium`}>
               {item.dueDate}
             </p>
             <EllipsisVertical size={20} color="#374957" />
@@ -30,28 +31,14 @@ export default function CardComponent() {
           {/* Progress Bar */}
           <div className="w-full flex justify-between font-medium mb-1">
             <p>Progress</p>
-            <p>{item.process}%</p>
+            <p>{item.progress}%</p>
+            
           </div>
           <div className="relative mb-5 w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             <div
-              className={`${item.colorBg} h-2.5 rounded-full`}
-              style={{ width: `${item.process}%` }}
+              className={`h-2.5 rounded-full ${item.progress == 25 ? "bg-custom-pink" : item.progress == 50 ? "bg-custom-yellow-500" : item.progress == 75 ? "bg-custom-carrot" : "bg-custom-sky-blue"}`}
+              style={{ width: `${item.progress}%` }}
             ></div>
-
-            {/* <div
-              className="border-l-4 rounded-full border-l-custom-pink h-5 absolute -top-1 left-1/4"
-              title="25%"
-            ></div>
-
-            <div
-              className="border-l-4 rounded-full border-l-custom-yellow-500 h-5 absolute -top-1 left-2/4"
-              title="50%"
-            ></div>
-
-            <div
-              className="border-l-4 rounded-full border-l-custom-carrot h-5 absolute -top-1 left-3/4"
-              title="75%"
-            ></div> */}
           </div>
 
           {/* Deadline */}
@@ -61,6 +48,7 @@ export default function CardComponent() {
             </p>
           </div>
         </div>
+        
       ))}
     </div>
   );

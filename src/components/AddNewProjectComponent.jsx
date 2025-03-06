@@ -1,7 +1,22 @@
 import { Plus } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-export default function AddNewProjectComponent() {
+export default function AddNewProjectComponent({ onProjectSubmit }) {
+  const [data, setData]= useState({});
+
+  const onChangeHandler = (e) => {
+    const inputData = {[e.target.name]: e.target.value};
+    setData({...data, ...inputData});
+    console.log("onchange value", e.target.value);
+    console.log("data", data);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onProjectSubmit(data); 
+    console.log("Form data submitted:", data);
+  };
+    
   return (
     <div>
       <button
@@ -58,6 +73,7 @@ export default function AddNewProjectComponent() {
                     Project Name
                   </label>
                   <input
+                  onChange={onChangeHandler}
                     type="text"
                     name="projectName"
                     id="projectName"
@@ -74,6 +90,7 @@ export default function AddNewProjectComponent() {
                     Due Date
                   </label>
                   <input
+                    onChange={onChangeHandler}
                     type="date"
                     name="dueDate"
                     id="dueDate"
@@ -90,6 +107,8 @@ export default function AddNewProjectComponent() {
                   </label>
                   <select
                     id="progress"
+                    name="progress"
+                    onChange={onChangeHandler}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option defaultValue="">Select Progress</option>
@@ -108,6 +127,8 @@ export default function AddNewProjectComponent() {
                   </label>
                   <textarea
                     id="description"
+                    name="description"
+                    onChange={onChangeHandler}
                     rows="4"
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Write product description here"
@@ -117,6 +138,7 @@ export default function AddNewProjectComponent() {
               <div className="text-right">
                 <button
                   type="submit"
+                  onClick={handleSubmit}
                   className="text-white inline-flex items-center bg-custom-sky-blue hover:bg-custom-sky-blue-500 focus:ring-4 focus:outline-none focus:ring-custom-sky-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-custom-sky-blue-500 dark:hover:bg-custom-sky-blue-500 dark:focus:ring-custom-sky-blue-500"
                 >
                   Create

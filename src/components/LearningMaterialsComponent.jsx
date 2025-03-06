@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import FilterComponent from "./FilterComponent";
-// import { learningMaterials } from "../data/learningMaterials";
 import { learningMaterials as initialData } from "../data/learningMaterials";
 
 export default function LearningMaterialsComponent() {
